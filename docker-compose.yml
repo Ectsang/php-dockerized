@@ -15,6 +15,17 @@ front:
     - ./sites:/etc/nginx/conf.d
     - ./logs:/var/log/supervisor
 
+other:
+  build: .
+  dockerfile: ./Dockerfile.busybox
+  ports:
+    - "81:81"
+  links:
+    - mysql:mysql
+  volumes:
+    - ./busy:/opt/busy
+    - ./logs:/var/log/supervisor
+
 mysql:
   image: mysql
   ports:
